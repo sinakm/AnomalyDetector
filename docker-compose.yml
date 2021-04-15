@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  datagenerator:
+    build:
+      context: .
+      dockerfile: data_generator/Dockerfile.data
+    container_name: Generator
+    command: python app.py
+    volumes:
+       - ./data_generator:/data_generator
+    ports:
+       - "7770:7000"
+
+  cycledetector:
+    build:
+      context: .
+      dockerfile: cycle_detector/Dockerfile.cycl
+    container_name: Detector
+    command: python app.py
+    volumes:
+       - ./cycle_detector:/cycle_detector
+    ports:
+       - "7771:7000"
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile.dash
+    container_name: Dashboard
+    command: python app.py
+    volumes:
+       - ./dashboard:/dashboard
+    ports:
+       - "7772:7000"
+

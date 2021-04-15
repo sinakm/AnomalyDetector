@@ -1,0 +1,7 @@
+flask
+redis
+pandas
+numpy==1.18.0
+matplotlib
+scipy
+simpledbf

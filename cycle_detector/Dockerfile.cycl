@@ -1,0 +1,26 @@
+# Dockerfile for Cycle Detector
+
+FROM continuumio/miniconda3
+
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir cycle_detector
+
+COPY ./cycle_detector cycle_detector
+
+
+WORKDIR cycle_detector
+
+
+RUN set -x \
+    && apt-get update -y && apt-get upgrade -y && apt-get install -y apt-utils autoconf automake build-essential \
+    coreutils apt-transport-https aria2 ca-certificates curl gnupg jq less vim python3-pip python3-dev libssl-dev \
+    libcurl4-openssl-dev libpq-dev libtool libxml2-dev libxslt-dev swig \
+    && apt-get autoremove \
+    && apt-get clean
+
+RUN conda update conda && conda install -y pandas numpy scipy scikit-learn tensorflow
+RUN python3 -m pip install --upgrade pip
+
+RUN pip install -r requirements.txt
+

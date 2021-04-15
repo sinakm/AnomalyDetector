@@ -1,0 +1,8 @@
+flask
+redis
+requests
+dash
+dash-bootstrap-components
+pandas-ta
+numpy==1.19.2
+
